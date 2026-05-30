@@ -1,3 +1,3 @@
 package com.vehicle.repository;
 
-// Repository placeholder file
+// unused placeholder - kept for project structure

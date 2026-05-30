@@ -1,3 +1,3 @@
 package com.vehicle.service;
 
-// Service placeholder file
+// unused placeholder - kept for project structure

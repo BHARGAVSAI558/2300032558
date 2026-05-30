@@ -1,0 +1,102 @@
+{
+  "info": {
+    "name": "CampusHiring",
+    "_postman_id": "campus-hiring-collection",
+    "description": "Campus Hiring Evaluation - Notification Microservice",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Register Student",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": { "raw": "http://localhost:8080/evaluation-service/register", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["evaluation-service", "register"] },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"student@gmail.com\",\n  \"name\": \"Student Name\",\n  \"mobileNo\": \"9999999999\",\n  \"githubUsername\": \"student\",\n  \"rollNo\": \"123\",\n  \"accessCode\": \"XXXXX\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Create Notification",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": { "raw": "http://localhost:8080/api/notifications", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "notifications"] },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"studentId\": 1,\n  \"type\": \"PLACEMENT\",\n  \"message\": \"Campus drive scheduled for next week\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Get All Notifications",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "http://localhost:8080/api/notifications?page=0&size=10", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "notifications"], "query": [{ "key": "page", "value": "0" }, { "key": "size", "value": "10" }] }
+      }
+    },
+    {
+      "name": "Get Unread Notifications",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "http://localhost:8080/api/notifications/unread?page=0&size=10", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "notifications", "unread"], "query": [{ "key": "page", "value": "0" }, { "key": "size", "value": "10" }] }
+      }
+    },
+    {
+      "name": "Mark Notification As Read",
+      "request": {
+        "method": "PUT",
+        "url": { "raw": "http://localhost:8080/api/notifications/1/read", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "notifications", "1", "read"] }
+      }
+    },
+    {
+      "name": "Get Notifications By Type - PLACEMENT",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "http://localhost:8080/api/notifications/type/PLACEMENT?page=0&size=10", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "notifications", "type", "PLACEMENT"], "query": [{ "key": "page", "value": "0" }, { "key": "size", "value": "10" }] }
+      }
+    },
+    {
+      "name": "Get Notifications By Type - RESULT",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "http://localhost:8080/api/notifications/type/RESULT?page=0&size=10", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "notifications", "type", "RESULT"], "query": [{ "key": "page", "value": "0" }, { "key": "size", "value": "10" }] }
+      }
+    },
+    {
+      "name": "Get Notifications By Type - EVENT",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "http://localhost:8080/api/notifications/type/EVENT?page=0&size=10", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "notifications", "type", "EVENT"], "query": [{ "key": "page", "value": "0" }, { "key": "size", "value": "10" }] }
+      }
+    },
+    {
+      "name": "Get Priority Notifications (Top 10)",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "http://localhost:8080/api/notifications/priority?limit=10", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "notifications", "priority"], "query": [{ "key": "limit", "value": "10" }] }
+      }
+    },
+    {
+      "name": "Get Priority Notifications (Custom Limit)",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "http://localhost:8080/api/notifications/priority?limit=20", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "notifications", "priority"], "query": [{ "key": "limit", "value": "20" }] }
+      }
+    },
+    {
+      "name": "Send Bulk Notifications",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": { "raw": "http://localhost:8080/api/notifications/bulk", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "notifications", "bulk"] },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"type\": \"PLACEMENT\",\n  \"message\": \"Bulk placement drive notification for all students\"\n}"
+        }
+      }
+    }
+  ]
+}
