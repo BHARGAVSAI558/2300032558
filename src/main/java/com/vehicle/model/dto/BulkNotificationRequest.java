@@ -6,10 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
-public class CreateNotificationRequest {
-
-    @NotNull
-    private Long studentId;
+public class BulkNotificationRequest {
 
     @NotNull
     private NotificationType type;
