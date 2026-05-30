@@ -73,17 +73,10 @@
       }
     },
     {
-      "name": "Get Priority Notifications (Top 10)",
+      "name": "Get Priority Notifications",
       "request": {
         "method": "GET",
         "url": { "raw": "http://localhost:8080/api/notifications/priority?limit=10", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "notifications", "priority"], "query": [{ "key": "limit", "value": "10" }] }
-      }
-    },
-    {
-      "name": "Get Priority Notifications (Custom Limit)",
-      "request": {
-        "method": "GET",
-        "url": { "raw": "http://localhost:8080/api/notifications/priority?limit=20", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "notifications", "priority"], "query": [{ "key": "limit", "value": "20" }] }
       }
     },
     {
@@ -96,6 +89,27 @@
           "mode": "raw",
           "raw": "{\n  \"type\": \"PLACEMENT\",\n  \"message\": \"Bulk placement drive notification for all students\"\n}"
         }
+      }
+    },
+    {
+      "name": "Get External Notifications",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "http://localhost:8080/api/external/notifications", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "external", "notifications"] }
+      }
+    },
+    {
+      "name": "Get External Depots",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "http://localhost:8080/api/external/depots", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "external", "depots"] }
+      }
+    },
+    {
+      "name": "Get External Vehicles",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "http://localhost:8080/api/external/vehicles", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "external", "vehicles"] }
       }
     }
   ]

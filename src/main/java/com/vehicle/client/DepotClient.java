@@ -1,7 +1,7 @@
 package com.vehicle.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.vehicle.model.dto.ExternalNotificationDto;
+import com.vehicle.model.dto.DepotDto;
 import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,41 +14,41 @@ import java.util.Collections;
 import java.util.List;
 
 @Component
-public class ExternalNotificationClient {
+public class DepotClient {
 
-    private static final Logger log = LoggerFactory.getLogger(ExternalNotificationClient.class);
-    private static final String URL = "http://4.224.186.213/evaluation-service/notifications";
+    private static final Logger log = LoggerFactory.getLogger(DepotClient.class);
+    private static final String URL = "http://4.224.186.213/evaluation-service/depots";
 
     private final RestTemplate restTemplate;
     private final TokenManager tokenManager;
 
-    public ExternalNotificationClient(RestTemplate restTemplate, TokenManager tokenManager) {
+    public DepotClient(RestTemplate restTemplate, TokenManager tokenManager) {
         this.restTemplate = restTemplate;
         this.tokenManager = tokenManager;
     }
 
-    public List<ExternalNotificationDto> fetchNotifications() {
+    public List<DepotDto> fetchDepots() {
         try {
             HttpHeaders headers = new HttpHeaders();
             headers.setBearerAuth(tokenManager.getToken());
             HttpEntity<Void> entity = new HttpEntity<>(headers);
 
-            ResponseEntity<NotificationsWrapper> response = restTemplate.exchange(
-                    URL, HttpMethod.GET, entity, NotificationsWrapper.class
+            ResponseEntity<DepotsWrapper> response = restTemplate.exchange(
+                    URL, HttpMethod.GET, entity, DepotsWrapper.class
             );
-            if (response.getBody() != null && response.getBody().getNotifications() != null) {
-                return response.getBody().getNotifications();
+            if (response.getBody() != null && response.getBody().getDepots() != null) {
+                return response.getBody().getDepots();
             }
             return Collections.emptyList();
         } catch (RestClientException e) {
-            log.error("Failed to fetch external notifications: {}", e.getMessage());
+            log.error("Failed to fetch depots: {}", e.getMessage());
             return Collections.emptyList();
         }
     }
 
     @Data
-    static class NotificationsWrapper {
-        @JsonProperty("notifications")
-        private List<ExternalNotificationDto> notifications;
+    static class DepotsWrapper {
+        @JsonProperty("depots")
+        private List<DepotDto> depots;
     }
 }
